@@ -69,10 +69,11 @@ void do_permutation(int *vector, int index, int max)
 	// recurse
 	do_permutation(vector, index + 1, max);
 	
-	// swap each iteration, doing a premutation of each
+	// swap each iteration, doing a permutation of each
 	int element;
 	for(element = index + 1; element < max; element++)
 	{
+		// don't permute if the values are equal
 		if(vector[index] == vector[element])
 			continue;
 		
