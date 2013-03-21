@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
 #include <math.h>
@@ -10,6 +11,12 @@ void do_populate();
 void do_permutation();
 void do_swap();
 void do_print();
+void do_store();
+void do_free();
+
+int **store 	= NULL;
+int store_count = 0;
+int lowest 		= 0;
 
 int main(int argc, char **argv)
 {
@@ -21,7 +28,7 @@ int main(int argc, char **argv)
 	FILE *input = fopen("input.in","r");
 	// assign case value
 	fscanf(input,"%d",&T);
-	
+		
 	int case_count = 0;
 	while(case_count != T)
 	{
@@ -30,6 +37,9 @@ int main(int argc, char **argv)
 		// create vector arrays based on the length
 		int vector_x[vlen];
 		int vector_y[vlen];
+		
+		// hold the first vector objects
+		store = malloc((sizeof(int) * vlen) * VECTORS);
 		
 		printf("Case #%d:\n",case_count);
 		
@@ -44,6 +54,11 @@ int main(int argc, char **argv)
 		case_count++;
 	}
 	fclose(input);
+}
+
+void do_free(int index)
+{
+	printf("%d",index);
 }
 
 void do_populate(FILE *input, int *vector, int max)
@@ -62,7 +77,8 @@ void do_permutation(int *vector, int index, int max)
 	// print the permutated vector
 	if(index == max)
 	{
-		do_print(vector, max);
+		do_store(vector, max);		
+		do_print(vector, max); 
 		printf("\n");
 		return;
 	}
@@ -96,5 +112,21 @@ void do_swap(int *vector, int pos_a, int pos_b)
 void do_print(int *vector, int len)
 {
 	for(int i=0;i<len;i++)
-		printf("%d\n",vector[i]);
+		printf("%d\n",vector[i]);	
 }
+
+void do_store(int *vector, int len)
+{	
+	// create heap space for new 
+	int *n = malloc(sizeof(int) * len);
+	
+	// copy array to n
+	memcpy(n,vector,sizeof(int) * len);
+	
+	// store vector
+	store[store_count] = n;
+	
+	// increase  count
+	store_count++;
+}
+
