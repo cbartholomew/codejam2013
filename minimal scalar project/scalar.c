@@ -21,21 +21,28 @@ int main(int argc, char **argv)
 	FILE *input = fopen("input.in","r");
 	// assign case value
 	fscanf(input,"%d",&T);
-	// get the vector length
-	fscanf(input,"%d",&vlen);
-	// create vector arrays based on the length
-	int vector_x[vlen];
-	int vector_y[vlen];
 	
-	// populate the vectors
-	for(int i=0;i<VECTORS;i++)
+	int case_count = 0;
+	while(case_count != T)
 	{
-		// get vector
-		int *vector = (i == 0) ? vector_x : vector_y;
-		do_populate(input,vector,vlen);
-		do_permutation(vector,0,vlen);
+		// get the vector length
+		fscanf(input,"%d",&vlen);
+		// create vector arrays based on the length
+		int vector_x[vlen];
+		int vector_y[vlen];
+		
+		printf("Case #%d:\n",case_count);
+		
+		// populate the vectors
+		for(int i=0;i<VECTORS;i++)
+		{
+			// get vector
+			int *vector = (i == 0) ? vector_x : vector_y;
+			do_populate(input,vector,vlen);
+			do_permutation(vector,0,vlen);
+		}
+		case_count++;
 	}
-	
 	fclose(input);
 }
 
