@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 		// get vector
 		int *vector = (i == 0) ? vector_x : vector_y;
 		do_populate(input,vector,vlen);
-		do_premutation(vector,0,vlen);
+		do_permutation(vector,0,vlen);
 	}
 	
 	fclose(input);
@@ -52,7 +52,7 @@ void do_populate(FILE *input, int *vector, int max)
 
 void do_permutation(int *vector, int index, int max)
 {
-	// print the premutated vector
+	// print the permutated vector
 	if(index == max)
 	{
 		do_print(vector, max);
@@ -60,7 +60,7 @@ void do_permutation(int *vector, int index, int max)
 		return;
 	}
 	// recurse
-	do_premutation(vector, index + 1, max);
+	do_permutation(vector, index + 1, max);
 	
 	// swap each iteration, doing a premutation of each
 	int element;
@@ -72,7 +72,7 @@ void do_permutation(int *vector, int index, int max)
 		// swap
 		do_swap(vector,index,element);
 		// recurse
-		do_premutation(vector,index + 1, max);
+		do_permutation(vector,index + 1, max);
 		// swap
 		do_swap(vector,index,element);
 	}	
