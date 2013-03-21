@@ -7,7 +7,7 @@
 #define VECTORS 2
 
 void do_populate();
-void do_premutation();
+void do_permutation();
 void do_swap();
 void do_print();
 
@@ -50,7 +50,7 @@ void do_populate(FILE *input, int *vector, int max)
 	}
 }
 
-void do_premutation(int *vector, int index, int max)
+void do_permutation(int *vector, int index, int max)
 {
 	// print the premutated vector
 	if(index == max)
